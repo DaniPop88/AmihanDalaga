@@ -338,6 +338,101 @@
         @media (max-width: 600px) {
             .product { width: 99vw; border-radius: 15px; font-size:1.07em;}
         }
+        
+        /* --- BEGIN: Responsive Fixes for Product Card, Carousel, Cart Badge --- */
+        @media (max-width: 600px) {
+            /* Make product card more visually open */
+            .product {
+                padding-left: 22px !important;
+                padding-right: 22px !important;
+                margin-bottom: 28px !important;
+            }
+            /* Add more space inside the image carousel container */
+            .product-slider-container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+            /* Move arrows further outside so they don't merge with border */
+            .product-slider-arrow.left {
+                left: -14px !important;
+            }
+            .product-slider-arrow.right {
+                right: -14px !important;
+            }
+            .product-slider-arrow {
+                width: 38px !important;
+                height: 38px !important;
+                font-size: 1.7em !important;
+                box-shadow: 0 2px 8px rgba(166,125,196,0.17);
+                z-index: 4;
+            }
+            /* Product slider dots - a little more room below image */
+            .product-slider-controls {
+                bottom: 6px !important;
+            }
+            /* Add-to-cart button spacing and badge fix */
+            .button {
+                padding-right: 48px !important;
+                padding-left: 18px !important;
+                font-size: 1.13em !important;
+            }
+            .button .cart-count {
+                position: absolute !important;
+                right: 14px !important;
+                bottom: 8px !important;
+                font-size: 1.08em !important;
+                background: #fff !important;
+                color: #a67dc4 !important;
+                border-radius: 50%;
+                padding: 2px 8px;
+                min-width: 25px;
+                text-align: center;
+            }
+            /* More vertical spacing between product elements */
+            .product h3,
+            .product p,
+            .product label,
+            .product input,
+            .product .button {
+                margin-bottom: 12px !important;
+            }
+            /* Prevent carousel arrows from being too close to corners */
+            .product-slider-container {
+                min-height: 0;
+            }
+        }
+        
+        /* Make sure .cart-btn-fixed does not overlap screen edge */
+        @media (max-width: 600px) {
+            .cart-btn-fixed {
+                bottom: 16px !important;
+                right: 12px !important;
+                width: 68px !important;
+                height: 68px !important;
+                font-size: 2em !important;
+            }
+            .cart-btn-fixed .cart-count {
+                top: 7px !important;
+                right: 7px !important;
+                font-size: .9em !important;
+                padding: 2px 6px !important;
+            }
+        }
+        
+        /* General: make sure all elements have enough room and nothing appears merged */
+        @media (max-width: 600px) {
+            .essence-block,
+            .faq,
+            .contact {
+                margin-bottom: 16px !important;
+            }
+            .testimonials {
+                padding: 18px 2vw !important;
+            }
+            .about-section {
+                padding: 18px 2vw !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -352,7 +447,7 @@
         Embrace elegance and the gentle wind in every stitch.</p><br>
         <a href="#products" class="cta-button" aria-label="Shop the Collection">Shop the Collection</a>
     </section>
-    <section class="essence" aria-label="Our Essence">
+    <section class="essence" aria-label="OUR ESSENCE">
         <h2>Our Essence</h2>
         <div class="essence-content">
             <div class="essence-block">

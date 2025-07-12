@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amihan Dalaga Apparel</title>
+    <meta name="description" content="Amihan Dalaga Apparel – Elegant Filipina dresses and casual chic wear inspired by the gentle Amihan breeze. For every Dalaga, everyday and beyond.">
+    <meta property="og:title" content="Amihan Dalaga Apparel">
+    <meta property="og:description" content="Where Grace Meets the Breeze. Shop cocktail dresses, summer wear, and loungewear for Filipinas.">
+    <meta property="og:image" content="https://i.ibb.co/8L4wGmsP/MARIE-CUSTOM-GOODS-5.png">
+    <meta property="og:url" content="https://amihandalaga.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/8L4wGmsP/MARIE-CUSTOM-GOODS-5.png">
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin:0; padding:0; background:#fff7fd;}
+        header {
+            background: linear-gradient(90deg, #f8e8fa 40%, #e5c8f7 100%);
+            text-align: center;
+            padding: 28px 0 16px 0;
+        }
+        #main-logo {
+            width: 110px;
+            height: 110px;
+            display: block;
+            margin: 0 auto 4px auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px #eed2f9a0;
+            background: #fff;
+        }
+        .hero {
+            text-align: center;
+            padding: 44px 8px 34px 8px;
+            background: linear-gradient(180deg, #fffafd 80%, #f7e4ff 100%);
+        }
+        .hero h1 { font-size: 2.2em; margin-bottom: 8px;}
+        .hero .tagline { font-size: 1.15em; color: #a67dc4; margin-bottom: 18px; font-style: italic;}
+        .cta-button {
+            padding: 15px 34px;
+            background: #581845;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 18px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 18px rgba(166,125,196,0.10);
+            transition: background 0.18s;
+            text-decoration: none;
+        }
+        .cta-button:hover, .cta-button:focus { background: #7f4ca5; }
+        .essence {
+            background: #f7e4ff;
+            padding: 38px 10px;
+            text-align: center;
+        }
+        .essence-content {display:flex; flex-wrap:wrap; justify-content:center; gap:24px; margin-top:18px;}
+        .essence-block {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 20px 16px 20px;
+            min-width: 240px;
+            max-width: 340px;
+            box-shadow: 0 4px 18px rgba(166,125,196,0.08);
+            flex:1 1 260px;
+        }
+        .essence-block h3 { margin-bottom: 6px; font-size: 1.3em;}
+        .essence-block p { color: #6d5892; font-size: 1.05em;}
+        .products-section { background: #fff; padding: 34px 8px;}
+        .products { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center;}
+        .products-section h2 {
+            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .product {
+            background: #fff;
+            border: 1px solid #e8d1f5;
+            border-radius: 12px;
+            padding: 16px 14px 20px 14px;
+            width: 340px;
+            box-shadow: 0 4px 14px rgba(166,125,196,0.07);
+            text-align: center;
+            position: relative;
+        }
+        /* Product image slider styles */
+        .product-slider-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            margin-bottom: 10px;
+            overflow: hidden;
+            background: #f4e8f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-slider-img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .product-slider-img.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        .product-slider-controls {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 2;
+        }
+        .product-slider-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #e5c8f7;
+            border: 2px solid #a67dc4;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: background 0.18s, opacity 0.18s;
+        }
+        .product-slider-dot.active {
+            background: #a67dc4;
+            opacity: 1;
+        }
+        .product-slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(166,125,196,0.23);
+            color: #581845;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.4em;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.15s;
+        }
+        .product-slider-arrow.left {
+            left: 6px;
+        }
+        .product-slider-arrow.right {
+            right: 6px;
+        }
+        .product-slider-arrow:hover, .product-slider-arrow:focus {
+            background: #a67dc4;
+            color: #fff;
+        }
+        .product h3 { margin-bottom:7px; font-size:1.18em;}
+        .product p {margin:0 0 8px 0;}
+        .button {
+            background: #a67dc4;
+            color: #fff;
+            padding: 12px 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.08em;
+            margin-bottom: 6px;
+            font-weight: 500;
+            transition: background 0.15s;
+            width: 90%;
+            max-width: 240px;
+            margin-top: 8px;
+        }
+        .button:hover, .button:focus { background: #7f4ca5;}
+        .quantity, input[type="text"] {
+            margin-top: 8px;
+            padding: 5px;
+            width: 70px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        /* Cart styles */
+        .cart-backdrop { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.3); z-index:100;}
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px 10px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(166,125,196,0.18);
+            width: 100%;
+            max-width: 420px;
+            z-index: 101;
+            border: 3px solid #a67dc4;
+            text-align: center;
+        }
+        .cart-modal h3 { margin: 0 0 10px 0; font-size: 1.2em; font-weight: bold; color:#a67dc4;}
+        .cart-modal ul { list-style: none; padding: 0; margin: 0; }
+        .cart-modal ul li { padding: 5px 0; display: flex; justify-content: space-between; align-items: center; font-size:1em; }
+        .cart-modal .remove-item-btn {
+            margin-left: 10px;
+            background: none;
+            border: none;
+            color: #c02618;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .empty-cart-msg { color: #888; font-style: italic; padding: 10px 0; }
+        .cart-modal .cart-count {
+            background-color: #a67dc4;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: .9em;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+        .cart-btn-fixed {
+            position: fixed;
+            bottom: 38px;
+            right: 38px;
+            background: #a67dc4;
+            color: #fff;
+            border-radius: 50%;
+            width: 84px;
+            height: 84px;
+            font-size: 2.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 8px 32px rgba(166,125,196,0.22), 0 0 0 6px #fbd8b099;
+            cursor: pointer;
+            z-index: 99;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+        .cart-btn-fixed:hover, .cart-btn-fixed:focus {
+            box-shadow: 0px 12px 40px rgba(166,125,196,0.31), 0 0 0 8px #fbd8b0;
+            transform: scale(1.07);
+        }
+        .cart-btn-fixed .cart-count {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #fff;
+            color: #a67dc4;
+            border-radius: 50%;
+            padding: 2px 7px;
+            font-size: .8em;
+        }
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #a67dc4;
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            z-index: 300;
+            font-size: 1.2em;
+        }
+        .testimonials {background: #f7e4ff; padding: 28px 8px; text-align: center;}
+        .testimonials h2 {margin-bottom:12px; color: #a67dc4;}
+        #testimonial-slider {max-width:520px; margin:0 auto;}
+        #testimonial-slider p {display:none; font-style: italic; color:#4f3c6d; font-size:1.08em;}
+        #testimonial-slider p.active {display:block;}
+        .testimonial-controls {display:flex; justify-content:center; gap:10px; margin-top:10px;}
+        .testimonial-controls button {
+            background:#fbd8b0; border:none; padding:6px 14px; border-radius:4px; cursor:pointer; color:#a67dc4; font-weight:bold;
+        }
+        .about-section {
+            background:#fff;
+            padding:32px 8px;
+            text-align:center;
+        }
+        .about-section h2 {margin-bottom:10px; color: #a67dc4;}
+        .about-section p {max-width:600px; margin:10px auto 0 auto; color:#6d5892;}
+        .faq-contact-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 34px;
+            max-width: 1100px;
+            margin: 40px auto 32px auto;
+        }
+        .faq, .contact {
+            background: #fff;
+            padding: 20px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(166,125,196,0.09);
+            flex: 1 1 0;
+            min-width: 220px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .faq h3, .contact h3 {
+            font-size: 1.18em;
+            margin-bottom: 8px;
+            color: #a67dc4;
+        }
+        .faq p, .contact p {
+            font-size: 1em;
+            color: #6d5892;
+            margin-bottom: 10px;
+        }
+        .faq p span, .contact p span {
+            font-weight: bold;
+            color: #a67dc4;
+        }
+        .contact iframe {border-radius:8px; margin:10px 0;}
+        footer {
+            background: linear-gradient(90deg, #e5c8f7 0%, #fff5fa 100%);
+            color: #a67dc4;
+            padding: 18px 10px;
+            text-align: center;
+            font-size: 1em;
+            border-top: 1px solid #f3d3fa;
+        }
+        footer a { color: #a67dc4; text-decoration: none; font-weight: bold;}
+        footer a:hover { text-decoration: underline;}
+        @media (max-width: 900px) {
+            .faq-contact-section { flex-direction: column; gap: 18px; max-width: 98vw;}
+            .essence-content { flex-direction: column; gap:12px;}
+            .products { flex-direction: column; align-items: center;}
+        }
+        @media (max-width: 600px) {
+            .product { width: 99vw; border-radius: 15px; font-size:1.07em;}
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="https://i.ibb.co/8L4wGmsP/MARIE-CUSTOM-GOODS-5.png" alt="Amihan Dalaga Apparel Logo" id="main-logo" width="110" height="110" loading="eager" />
+</header>
+<main>
+    <section class="hero">
+        <h1>Amihan Dalaga Apparel</h1>
+        <div class="tagline">Where Grace Meets the Breeze.</div>
+        <p>Elegant Filipina Fashion – Breezy, Chic & Proudly Pinay.<br>
+        Embrace elegance and the gentle wind in every stitch.</p><br>
+        <a href="#products" class="cta-button" aria-label="Shop the Collection">Shop the Collection</a>
+    </section>
+    <section class="essence" aria-label="Our Essence">
+        <h2>Our Essence</h2>
+        <div class="essence-content">
+            <div class="essence-block">
+                <h3>Breezy Elegance</h3>
+                <p>Lightweight fabrics that flow with every move, so you feel the amihan breeze wherever you go.</p>
+            </div>
+            <div class="essence-block">
+                <h3>Filipina Grace</h3>
+                <p>Designs inspired by the modern dalaga—culturally rooted, yet effortlessly chic.</p>
+            </div>
+            <div class="essence-block">
+                <h3>Nature-Driven</h3>
+                <p>Soft pastels and natural fibers for comfort, style, and sustainability.</p>
+            </div>
+        </div>
+    </section>
+    <section class="products-section" id="products" aria-label="Featured Collections">
+        <h2>FEATURED COLLECTIONS</h2>
+        <div class="products">
+            <!-- Product 1 with image slider -->
+            <div class="product" tabindex="0">
+                <div class="product-slider-container" data-product="breezy-summer">
+                    <img src="https://i.ibb.co/tTLPXWXq/1.png" alt="Ruffled Strapless" class="product-slider-img active">
+                    <img src="https://i.ibb.co/PssM9vXC/2.png" alt="Ruffled Strapless" class="product-slider-img">
+                    <img src="https://i.ibb.co/xtJDj0wj/3.png" alt="Ruffled Strapless" class="product-slider-img">
+                    <img src="https://i.ibb.co/xKcVRbvZ/4.png" alt="Ruffled Strapless" class="product-slider-img">
+                    <img src="https://i.ibb.co/wZKsnZcX/5.png" alt="Ruffled Strapless" class="product-slider-img">
+                    <button class="product-slider-arrow left" aria-label="Previous image">&lt;</button>
+                    <button class="product-slider-arrow right" aria-label="Next image">&gt;</button>
+                    <div class="product-slider-controls">
+                        <span class="product-slider-dot active"></span>
+                        <span class="product-slider-dot"></span>
+                        <span class="product-slider-dot"></span>
+                    </div>
+                </div>
+                <h3>Ruffled Strapless Luxurious Flower Applique</h3>
+                <h6>Ready Color : 🔴 ⚫ ⚪</h6>
+                <p>₱899.00</p>
+                <label for="prod1-qty">Quantity:</label>
+                <input type="number" id="prod1-qty" class="quantity" value="1" min="1" aria-label="Quantity Breezy Summer Dress" />
+                <button class="button" onclick="addToCart('Breezy Summer Dress', 899, document.getElementById('prod1-qty').value)" aria-label="Add Breezy Summer Dress to Cart">Add to Cart</button>
+            </div>
+            <!-- Product 2 with image slider -->
+            <div class="product" tabindex="0">
+                <div class="product-slider-container" data-product="dalaga-cocktail">
+                    <img src="https://i.ibb.co/DfT0jx10/1.png" alt="Strap Pearl Party Dress" class="product-slider-img active">
+                    <img src="https://i.ibb.co/1Jr0bS6c/3.png" alt="Strap Pearl Party Dress" class="product-slider-img">
+                    <img src="https://i.ibb.co/xSFvXvY1/2.png" alt="Strap Pearl Party Dress" class="product-slider-img">
+                    <img src="https://i.ibb.co/1Y3CWkbn/5.png" alt="Strap Pearl Party Dress" class="product-slider-img">
+                    <img src="https://i.ibb.co/v4cF1mwb/4.png" alt="Strap Pearl Party Dress" class="product-slider-img">
+                    <button class="product-slider-arrow left" aria-label="Previous image">&lt;</button>
+                    <button class="product-slider-arrow right" aria-label="Next image">&gt;</button>
+                    <div class="product-slider-controls">
+                        <span class="product-slider-dot active"></span>
+                        <span class="product-slider-dot"></span>
+                        <span class="product-slider-dot"></span>
+                    </div>
+                </div>
+                <h3>Strap Pearl Party Dress</h3>
+                <h6>Ready Color : ⚫</h6>
+                <p>₱1,299.00</p>
+                <label for="prod2-qty">Quantity:</label>
+                <input type="number" id="prod2-qty" class="quantity" value="1" min="1" aria-label="Quantity Dalaga Cocktail Dress" />
+                <button class="button" onclick="addToCart('Dalaga Cocktail Dress', 1299, document.getElementById('prod2-qty').value)" aria-label="Add Dalaga Cocktail Dress to Cart">Add to Cart</button>
+            </div>
+            <!-- Example for a third product -->
+            <div class="product" tabindex="0">
+                <div class="product-slider-container" data-product="lounge-set">
+                    <img src="https://i.ibb.co/F4s1B7f/lounge-1.jpg" alt="Lounge Set Front" class="product-slider-img active">
+                    <img src="https://i.ibb.co/0QJ4GhL/lounge-1b.jpg" alt="Lounge Set Side" class="product-slider-img">
+                    <img src="https://i.ibb.co/b6m0nKz/lounge-1c.jpg" alt="Lounge Set Back" class="product-slider-img">
+                    <button class="product-slider-arrow left" aria-label="Previous image">&lt;</button>
+                    <button class="product-slider-arrow right" aria-label="Next image">&gt;</button>
+                    <div class="product-slider-controls">
+                        <span class="product-slider-dot active"></span>
+                        <span class="product-slider-dot"></span>
+                        <span class="product-slider-dot"></span>
+                    </div>
+                </div>
+                <h3>Amihan Lounge Set</h3>
+                <p>₱749.00</p>
+                <label for="prod3-qty">Quantity:</label>
+                <input type="number" id="prod3-qty" class="quantity" value="1" min="1" aria-label="Quantity Amihan Lounge Set" />
+                <button class="button" onclick="addToCart('Amihan Lounge Set', 749, document.getElementById('prod3-qty').value)" aria-label="Add Amihan Lounge Set to Cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials" aria-label="Testimonials">
+        <h2>Testimonials</h2>
+        <div id="testimonial-slider">
+            <p class="active">“I felt like a breeze in my Amihan dress—so light and flattering!”<br>— Camille G., Makati City</p>
+            <p>“Finally a brand that understands us dalagas: elegant, comfy, and proudly Pinay.”<br>— Aira D., Quezon City</p>
+            <p>“My order arrived fast! The lounge set is my new favorite at home.”<br>— Beatriz S., Pasig City</p>
+        </div>
+        <div class="testimonial-controls">
+            <button id="testimonial-prev" aria-label="Previous Testimonial">&lt;</button>
+            <button id="testimonial-next" aria-label="Next Testimonial">&gt;</button>
+        </div>
+    </section>
+    <section class="about-section" aria-label="About Us">
+        <h2>About Us</h2>
+        <p>
+            Amihan Dalaga Apparel was born from two Filipino passions: the gentle amihan wind and the timeless grace of the dalaga. Founder <strong>Liza Reyes</strong> wanted to create a label that celebrates every Filipina’s elegance, light, breezy, and effortlessly YOU.<br><br>
+            <b>Our Mission:</b> To craft garments that honor your femininity and keep you feeling fresh, confident, and connected to nature.<br><br>
+            <b>Our Values:</b> Cultural Pride, Quality & Comfort, Sustainability with eco-friendly fabrics.
+        </p>
+    </section>
+    <section class="faq-contact-section" aria-label="Contact and FAQ">
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <p><span>Address:</span><br>
+            Unit 3A, Amihan Suites<br>
+            45 San Lorenzo St., Brgy. San Lorenzo<br>
+            Makati City, 1223 Metro Manila<br>
+            Philippines</p>
+            <p><span>Phone:</span><br>
+            +63 2 8819 5542</p>
+            <p><span>Email:</span><br>
+            <a href="mailto:hello@amihandalaga.com">hello@amihandalaga.com</a></p>
+            <p><span>Business Hours:</span><br>
+            Monday – Saturday: 10:00 AM – 7:00 PM<br>
+            Sunday: Closed</p>
+        </div>
+        <div class="faq">
+            <h3>FAQ</h3>
+            <p><span>Q:</span> What fabrics do you use?<br>
+            <span>A:</span> We choose breathable cotton blends and linen-mix fabrics—perfect for our tropical climate.</p>
+            <p><span>Q:</span> How long is delivery?<br>
+            <span>A:</span> Metro Manila orders arrive in 2–3 days; provincial orders in 5–7 days.</p>
+            <p><span>Q:</span> Can I request custom sizing?<br>
+            <span>A:</span> Yes! Email us your measurements at least 3 days before checkout.</p>
+        </div>
+    </section>
+</main>
+<!-- Cart Modal and Backdrop -->
+<div class="cart-backdrop" id="cart-backdrop" tabindex="-1" aria-label="Cart Backdrop"></div>
+<aside class="cart-modal" id="cart-modal" aria-label="Shopping Cart" tabindex="0">
+    <h3>Your Cart <span class="cart-count">0</span></h3>
+    <ul id="cart-items" aria-live="polite"></ul>
+    <div class="empty-cart-msg" id="empty-cart-msg" style="display:none;">Your cart is empty.</div>
+    <a href="order-summary.html"><button class="button" aria-label="Checkout">Checkout</button></a>
+    <button class="button" onclick="emptyCart()" aria-label="Empty Cart">Empty Cart</button>
+    <button class="button" onclick="closeCart()" aria-label="Close Cart">Close</button>
+</aside>
+<div class="cart-btn-fixed" id="cart-btn-fixed" aria-label="Show Cart" tabindex="0" onclick="showCart()">
+    🛒<span class="cart-count">0</span>
+</div>
+<div id="toast" role="status" aria-live="polite">Added to cart!</div>
+<footer>
+    <p>DTI Permit #: 90876543<br>
+    &copy; 2025 Amihan Dalaga Apparel. All rights reserved.<br>
+    Follow us on <a href="https://instagram.com/yourbrand" target="_blank">Instagram</a> | <a href="https://facebook.com/yourbrand" target="_blank">Facebook</a>
+    </p>
+</footer>
+<script>
+    // Cart logic
+    let cart = [];
+    function addToCart(itemName, price, quantity) {
+        quantity = parseInt(quantity);
+        if (isNaN(quantity) || quantity < 1) {
+            alert("Please enter a valid quantity.");
+            return;
+        }
+        let existing = cart.find(item => item.itemName === itemName);
+        if (existing) {
+            existing.quantity += quantity;
+            existing.totalPrice = existing.price * existing.quantity;
+        } else {
+            let item = { itemName, price, quantity, totalPrice: price * quantity };
+            cart.push(item);
+        }
+        updateCart();
+        showToast("Added to cart!");
+        highlightCart();
+    }
+    function updateCart() {
+        let cartItems = document.getElementById("cart-items");
+        let cartCountEls = document.querySelectorAll(".cart-count");
+        let emptyMsg = document.getElementById("empty-cart-msg");
+        cartItems.innerHTML = "";
+        let total = 0;
+        if (cart.length === 0) {
+            emptyMsg.style.display = "";
+        } else {
+            emptyMsg.style.display = "none";
+        }
+        cart.forEach((item, idx) => {
+            let li = document.createElement("li");
+            li.innerHTML = `<span>${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}</span>
+                <button class="remove-item-btn" aria-label="Remove ${item.itemName} from cart" onclick="removeCartItem(${idx})" tabindex="0">&times;</button>`;
+            cartItems.appendChild(li);
+            total += item.totalPrice;
+        });
+        cartCountEls.forEach(el => el.textContent = cart.length);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    function removeCartItem(idx) {
+        cart.splice(idx, 1);
+        updateCart();
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    function showToast(msg="Added to cart!") {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 2000);
+    }
+    function highlightCart() {
+        const cartDiv = document.getElementById('cart-modal');
+        cartDiv.classList.add('highlight');
+        setTimeout(() => cartDiv.classList.remove('highlight'), 600);
+    }
+    function showCart() {
+        document.getElementById("cart-modal").style.display = "block";
+        document.getElementById("cart-backdrop").style.display = "block";
+    }
+    function closeCart() {
+        document.getElementById("cart-modal").style.display = "none";
+        document.getElementById("cart-backdrop").style.display = "none";
+    }
+    function emptyCart() {
+        if (!confirm("Are you sure you want to empty the cart?")) return;
+        cart = [];
+        updateCart();
+        localStorage.removeItem('cart');
+        showToast("Your cart has been emptied!");
+    }
+    document.getElementById("cart-backdrop").onclick = closeCart;
+
+    // Testimonials JS
+    let testimonialIdx = 0;
+    let testimonials;
+    function showTestimonial(idx) {
+        testimonials.forEach((el, i) => { el.classList.toggle('active', i === idx); });
+    }
+    function nextTestimonial() {
+        testimonialIdx = (testimonialIdx + 1) % testimonials.length;
+        showTestimonial(testimonialIdx);
+    }
+    function prevTestimonial() {
+        testimonialIdx = (testimonialIdx - 1 + testimonials.length) % testimonials.length;
+        showTestimonial(testimonialIdx);
+    }
+
+    // Product image slider logic
+    function initProductSliders() {
+        document.querySelectorAll('.product-slider-container').forEach(function(container) {
+            let imgs = Array.from(container.querySelectorAll('.product-slider-img'));
+            let dots = Array.from(container.querySelectorAll('.product-slider-dot'));
+            let leftBtn = container.querySelector('.product-slider-arrow.left');
+            let rightBtn = container.querySelector('.product-slider-arrow.right');
+            let idx = 0;
+            let timer;
+
+            function showImg(i) {
+                imgs.forEach((img, j) => img.classList.toggle('active', j === i));
+                dots.forEach((dot, j) => dot.classList.toggle('active', j === i));
+                idx = i;
+            }
+            function prevImg() {
+                let newIdx = (idx - 1 + imgs.length) % imgs.length;
+                showImg(newIdx);
+                resetTimer();
+            }
+            function nextImg() {
+                let newIdx = (idx + 1) % imgs.length;
+                showImg(newIdx);
+                resetTimer();
+            }
+            function dotClick(e) {
+                let i = dots.indexOf(e.target);
+                showImg(i);
+                resetTimer();
+            }
+            function resetTimer() {
+                clearInterval(timer);
+                timer = setInterval(nextImg, 3500);
+            }
+            leftBtn.addEventListener("click", prevImg);
+            rightBtn.addEventListener("click", nextImg);
+            dots.forEach(dot => dot.addEventListener("click", dotClick));
+            showImg(0);
+            timer = setInterval(nextImg, 3500);
+            container.addEventListener("keydown", function(e) {
+                if (e.key === "ArrowLeft") { prevImg(); }
+                if (e.key === "ArrowRight") { nextImg(); }
+            });
+        });
+    }
+
+    window.onload = function() {
+        // Cart persistence
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            cart = JSON.parse(savedCart);
+            updateCart();
+        } else {
+            updateCart();
+        }
+        // Testimonials
+        testimonials = document.querySelectorAll('#testimonial-slider p');
+        testimonialIdx = 0;
+        showTestimonial(testimonialIdx);
+        setInterval(nextTestimonial, 4000);
+        document.getElementById("testimonial-next").onclick = nextTestimonial;
+        document.getElementById("testimonial-prev").onclick = prevTestimonial;
+        document.getElementById("cart-btn-fixed").addEventListener("keydown", function(e){
+            if (e.key === "Enter" || e.key === " ") showCart();
+        });
+        // Product sliders
+        initProductSliders();
+    }
+</script>
+</body>
+</html>

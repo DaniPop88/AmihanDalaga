@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Summary - Amihan Dalaga Apparel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4;}
+        .summary-container {
+            max-width: 500px;
+            margin: 32px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(166,125,196,0.12);
+        }
+        h1 { color: #a67dc4; text-align:center;}
+        ul { list-style-type:none; padding:0; }
+        li { margin-bottom:12px; font-size:1.1em; }
+        .total { font-weight:bold; font-size:1.2em; color:#a67dc4; margin-top:20px;}
+        .back-btn {
+            display: block;
+            margin: 24px auto 0 auto;
+            background: #a67dc4;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:hover { background: #7f4ca5; }
+        .empty { color: #888; text-align:center; margin: 30px 0; }
+        form.checkout-form { margin-top:32px; }
+        .form-group { margin-bottom: 16px; }
+        label { font-weight:bold; display:block; margin-bottom:6px; }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        textarea { resize: vertical; min-height: 48px; }
+        .submit-btn {
+            width:100%;
+            background: #a67dc4;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 0;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover { background: #7f4ca5; }
+        .required { color: #c02618; }
+    </style>
+</head>
+<body>
+    <div class="summary-container">
+        <h1>Your Order Summary</h1>
+        <ul id="order-list"></ul>
+        <div class="total" id="order-total"></div>
+        <form class="checkout-form" id="checkout-form" autocomplete="off">
+            <div class="form-group">
+                <label for="name">Full Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" maxlength="40" required>
+            </div>
+            <div class="form-group">
+                <label for="organization">Organization (Optional)</label>
+                <input type="text" id="organization" name="organization" maxlength="40">
+            </div>
+            <div class="form-group">
+                <label for="street">Street Address <span class="required">*</span></label>
+                <textarea id="street" name="street" maxlength="120" required></textarea>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <div class="form-group" style="flex:1;">
+                    <label for="suburb">Suburb <span class="required">*</span></label>
+                    <input type="text" id="suburb" name="suburb" maxlength="30" required>
+                </div>
+                <div class="form-group" style="flex:1;">
+                    <label for="city">City <span class="required">*</span></label>
+                    <input type="text" id="city" name="city" maxlength="30" required>
+                </div>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <div class="form-group" style="flex:1;">
+                    <label for="postal">Postal Code <span class="required">*</span></label>
+                    <input type="text" id="postal" name="postal" maxlength="8" required pattern="^\d{4,6}$">
+                </div>
+                <div class="form-group" style="flex:1;">
+                    <label for="province">Province <span class="required">*</span></label>
+                    <input type="text" id="province" name="province" maxlength="30" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" maxlength="15" pattern="^09\d{9}$" placeholder="Ex: 09XXXXXXXXX" required>
+            </div>
+            <div class="form-group">
+                <label for="payment">Mode of Payment <span class="required">*</span></label>
+                <select id="payment" name="payment" required>
+                    <option value="">-- Select Payment Method --</option>
+                    <option value="Gcash">Gcash</option>
+                    <option value="Paymaya">Paymaya</option>
+                    <option value="Paypal">Paypal</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Place Order</button>
+        </form>
+        <a href="index.html" class="back-btn">Back to Shop</a>
+    </div>
+    <script>
+        // Get cart from localStorage
+        const cart = JSON.parse(localStorage.getItem('cart') || "[]");
+        const orderList = document.getElementById('order-list');
+        const orderTotal = document.getElementById('order-total');
+        let total = 0;
+        if (cart.length === 0) {
+            orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
+            orderTotal.textContent = "";
+            document.getElementById('checkout-form').style.display = "none";
+        } else {
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.itemName} x ${item.quantity} - ₱${item.totalPrice.toFixed(2)}`;
+                orderList.appendChild(li);
+                total += item.totalPrice;
+            });
+            orderTotal.textContent = `Total: ₱${total.toFixed(2)}`;
+        }
+
+        document.getElementById('checkout-form').onsubmit = function(e){
+            e.preventDefault();
+            // Collect all fields
+            const name = document.getElementById('name').value.trim();
+            const organization = document.getElementById('organization').value.trim();
+            const street = document.getElementById('street').value.trim();
+            const suburb = document.getElementById('suburb').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const postal = document.getElementById('postal').value.trim();
+            const province = document.getElementById('province').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const payment = document.getElementById('payment').value;
+
+            // Validate required fields
+            if (!name || !street || !suburb || !city || !postal || !province || !phone || !payment) {
+                alert("Please fill out all required fields.");
+                return false;
+            }
+            // Validate phone (Philippines mobile: 09XXXXXXXXX)
+            if (!/^09\d{9}$/.test(phone)) {
+                alert("Please enter a valid Philippine mobile number (09XXXXXXXXX).");
+                document.getElementById('phone').focus();
+                return false;
+            }
+            // Validate postal code (4-6 numbers, Philippines)
+            if (!/^\d{4,6}$/.test(postal)) {
+                alert("Please enter a valid Philippine postal code (4 to 6 digits).");
+                document.getElementById('postal').focus();
+                return false;
+            }
+            let addressSummary =
+                street + "\n" +
+                suburb + ", " + city + "\n" +
+                province + " " + postal + "\n" +
+                "Philippines";
+            alert(
+                "Order placed!\n\n" +
+                `Name: ${name}\n` +
+                (organization ? `Organization: ${organization}\n` : '') +
+                `Address:\n${addressSummary}\n` +
+                `Phone: ${phone}\n` +
+                `Payment: ${payment}\n\n` +
+                "Thank you for your order! We will contact you soon."
+            );
+            localStorage.removeItem('cart');
+            document.getElementById('checkout-form').reset();
+            orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
+            orderTotal.textContent = "";
+            document.getElementById('checkout-form').style.display = "none";
+        };
+    </script>
+</body>
+</html>

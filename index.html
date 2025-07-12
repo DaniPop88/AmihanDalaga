@@ -347,7 +347,7 @@
           }
           .product-slider-container {
             width: 100%;
-            min-height: 60vw;  /* Ensures a square look on mobile, you can adjust this value */
+            min-height: 60vw;
             height: 60vw;
             max-height: 72vw;
             aspect-ratio: unset !important;
@@ -404,7 +404,6 @@
             min-width: 25px;
             text-align: center;
           }
-          /* More vertical spacing between product elements */
           .product h3,
           .product p,
           .product label,
@@ -412,12 +411,15 @@
           .product .button {
             margin-bottom: 12px !important;
           }
+          /* Now the floating cart button is centered on mobile */
           .cart-btn-fixed {
-            bottom: 16px !important;
-            right: 12px !important;
+            left: 50%;
+            right: auto !important;
+            bottom: 36px !important; /* or 48px for more gap from bottom bar */
             width: 68px !important;
             height: 68px !important;
             font-size: 2em !important;
+            transform: translateX(-50%);
           }
           .cart-btn-fixed .cart-count {
             top: 7px !important;

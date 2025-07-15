@@ -14,6 +14,16 @@
             border-radius: 12px;
             box-shadow: 0 4px 18px rgba(166,125,196,0.12);
         }
+        .brand-logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: contain;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(166,125,196,0.10);
+        }
         h1 { color: #a67dc4; text-align:center;}
         ul { list-style-type:none; padding:0; }
         li { margin-bottom:12px; font-size:1.1em; }
@@ -92,6 +102,15 @@
             border: 2px solid #a67dc4;
             background: #ede2fa;
         }
+        .payment-icon {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 7px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            margin-right: 6px;
+        }
         .hidden-radio {
             display: none;
         }
@@ -118,13 +137,16 @@
             color: #a67dc4;
         }
         @media (max-width:600px) {
+            .brand-logo { width: 60px; height: 60px; }
             .back-btn { min-width: 110px; padding: 12px 18px; font-size: 1em;}
             .payment-option { font-size:1em;}
+            .payment-icon { width: 24px; height: 24px; }
         }
     </style>
 </head>
 <body>
     <div class="summary-container">
+        <img src="images/LOGO.png" alt="Amihan Dalaga Apparel Logo" class="brand-logo" loading="lazy" width="90" height="90">
         <h1>Your Order Summary</h1>
         <ul id="order-list"></ul>
         <div class="total" id="order-total"></div>
@@ -196,12 +218,12 @@
         <a href="index.html" class="back-btn">← Back to Shop</a>
     </div>
     <script>
-        // Payment platforms (no logos, plus Cash On Delivery last)
+        // Tambahkan logo payment di sini!
         const paymentGroups = [
-            [{ name: "GCASH" }],
-            [{ name: "PAYPAL" }, { name: "PAYMAYA" }],
-            [{ name: "BDO" }, { name: "BPI" }],
-            [{ name: "CASH ON DELIVERY" }]
+            [{ name: "GCASH", icon: "images/gcash.png" }],
+            [{ name: "PAYPAL", icon: "images/paypal.png" }, { name: "PAYMAYA", icon: "images/paymaya.png" }],
+            [{ name: "BDO", icon: "images/bdo.png" }, { name: "BPI", icon: "images/bpi.png" }],
+            [{ name: "CASH ON DELIVERY", icon: "images/cod.png" }]
         ];
         const paymentMethodsDiv = document.getElementById('payment-methods');
         let paymentIdx = 0;
@@ -216,6 +238,7 @@
                 container.setAttribute('aria-checked', 'false');
                 container.style.flex = "1";
                 let html = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${paymentIdx}" value="${platform.name}">`;
+                if (platform.icon) html += `<img src="${platform.icon}" class="payment-icon" alt="${platform.name}">`;
                 html += `<span>${platform.name}</span>`;
                 container.innerHTML = html;
                 container.addEventListener('click', function(e) {
@@ -235,7 +258,7 @@
             paymentMethodsDiv.appendChild(groupDiv);
         });
 
-        // Get cart from localStorage
+        // Cart dari localStorage
         const cart = JSON.parse(localStorage.getItem('cart') || "[]");
         const orderList = document.getElementById('order-list');
         const orderTotal = document.getElementById('order-total');
@@ -257,7 +280,7 @@
             document.getElementById('order-details-hidden').value = detailsText + `Total: ₱${total.toFixed(2)}`;
         }
 
-        // Form submit logic
+        // Validasi & submit
         document.getElementById('checkout-form').onsubmit = function(e){
             if (!document.getElementById('payment-hidden').value) {
                 alert("Please select your payment platform.");

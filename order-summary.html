@@ -136,6 +136,24 @@
         .order-info-box strong {
             color: #a67dc4;
         }
+        .order-section-title {
+            font-size:1.09em;
+            font-weight:bold;
+            color:#a67dc4;
+            margin-bottom:4px;
+            display:flex;
+            align-items:center;
+            gap:7px;
+        }
+        .order-section-content {
+            margin-left:2em;
+            margin-bottom:13px;
+            margin-top:4px;
+        }
+        .order-section-content ul {
+            margin:8px 0 8px 1.4em;
+            padding-left:0;
+        }
         @media (max-width:600px) {
             .brand-logo { width: 60px; height: 60px; }
             .back-btn { min-width: 110px; padding: 12px 18px; font-size: 1em;}
@@ -205,20 +223,58 @@
             <b>Please keep your phone open for a confirmation text!</b>
         </div>
         <div class="order-info-box">
-            <strong>Order Processing & Confirmation</strong><br><br>
-            We will process your order within our business hours:<br>
-            <strong>Monday – Friday: 9:00 AM – 6:00 PM</strong><br>
-            Saturday & Sunday: Closed<br><br>
-            Our representative will get in touch with you to give you the final calculation of shipping fee and total order. You will then receive a direct payment link for your chosen payment platform.<br><br>
-            <strong>Please complete your payment within 24 hours to avoid cancellation.</strong><br><br>
-            Processing your items will take <strong>1 to 3 working days</strong>. Shipping time may vary depending on your location and the logistics provider.<br><br>
-            If you have any questions or need assistance, please contact us at <a href="mailto:hello@amihandalaga.com">hello@amihandalaga.com</a>.<br><br>
-            <strong>Thank you for your order with AMIHAN DALAGA APPAREL. We look forward to your next purchase!</strong>
+            <strong style="font-size:1.08em;">Order Processing & Confirmation</strong>
+            <p style="margin:14px 0 16px 0;">
+                Thank you for shopping with <strong>Amihan Dalaga Apparel</strong>.<br>
+                Please review the following information regarding our order processing and confirmation procedure:
+            </p>
+
+            <div class="order-section-title"><span style="font-size:1.13em;">📅</span>Business Hours</div>
+            <div class="order-section-content">
+                We process all orders during the following business hours:<br>
+                <b>Monday to Friday:</b> 9:00 AM – 6:00 PM<br>
+                <b>Saturday & Sunday:</b> Closed
+            </div>
+
+            <div class="order-section-title"><span style="font-size:1.13em;">📝</span>Order Review & Confirmation</div>
+            <div class="order-section-content">
+                After placing your order, a member of our team will personally reach out to confirm important order details, including:
+                <ul>
+                    <li><b>Preferred color and size</b> of the selected item(s)</li>
+                    <li>Availability of styles or variants</li>
+                    <li>Shipping fees and delivery address</li>
+                    <li>Estimated delivery time</li>
+                </ul>
+                Once everything is confirmed, we will send you a secure payment link according to your selected payment method.
+            </div>
+
+            <div class="order-section-title"><span style="font-size:1.13em;">⏳</span>Payment Deadline</div>
+            <div class="order-section-content">
+                To secure your order, please complete payment within <b>24 hours</b> of receiving the link.<br>
+                Unpaid orders beyond this timeframe will be automatically cancelled.
+            </div>
+
+            <div class="order-section-title"><span style="font-size:1.13em;">📦</span>Processing & Shipping Timeline</div>
+            <div class="order-section-content">
+                Order preparation typically takes <b>1 to 3 working days</b> from payment confirmation.<br>
+                Delivery time depends on your shipping location and the logistics provider.
+            </div>
+
+            <div class="order-section-title"><span style="font-size:1.13em;">📩</span>Need Help?</div>
+            <div class="order-section-content">
+                If you have any questions or require assistance, feel free to contact us at
+                <a href="mailto:hello@amihandalaga.com">hello@amihandalaga.com</a>.<br>
+                Our support team will gladly assist you.
+            </div>
+            <div style="margin-top:18px;">
+                Thank you for choosing <b>Amihan Dalaga Apparel</b>.<br>
+                We look forward to dressing you with elegance and pride!
+            </div>
         </div>
         <a href="index.html" class="back-btn">← Back to Shop</a>
     </div>
     <script>
-        // Tambahkan logo payment di sini!
+        // Payment with logo
         const paymentGroups = [
             [{ name: "GCASH", icon: "images/GCASH.png" }],
             [{ name: "PAYPAL", icon: "images/PAYPAL.png" }, { name: "PAYMAYA", icon: "images/PAYMAYA.png" }],
